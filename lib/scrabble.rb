@@ -1,8 +1,4 @@
 class Scrabble
-  def score(word)
-    0
-  end
-
   def point_values
     {
       "A"=>1, "B"=>3, "C"=>3, "D"=>2,
@@ -13,5 +9,12 @@ class Scrabble
       "U"=>1, "V"=>4, "W"=>4, "X"=>8,
       "Y"=>4, "Z"=>10
     }
+  end
+
+  def score(word)
+    return 0 if word.nil?
+    letters = word.upcase.chars
+    sum = letters.map { |letter| point_values.fetch(letter) }
+                 .reduce(0, :+)
   end
 end
